@@ -1,4 +1,8 @@
 <?php
+require_once "ZabbixAPI.php";
+
 $api = new ZabbixAPI("http://goofy.tech42.de/tribily-zabbix-frontend/");
-$api->authenticate("admin", "test");
-$host = $api->getHost(1);
+$error = "";
+$result = $api->authenticate("admin", "gg", $error);
+
+var_dump($result, $error);
