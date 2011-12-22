@@ -1,5 +1,7 @@
 <?php
 require_once "exceptions/ZabbixAPI_Exception.php";
+require_once "object/Template.php";
+require_once "object/Host.php";
 
 /**
  * ZabbixAPI
@@ -109,6 +111,11 @@ class ZabbixAPI {
 		// our auth was succesful. we should set the auth token
 		$this->authToken = $apiResult['result'];
 		return true;
+	}
+	
+	public function getHostByHostId($hostid)
+	{
+		return new ZabbixAPI_Object_Host($hostid, $this);
 	}
 
 }

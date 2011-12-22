@@ -7,7 +7,7 @@
  * @author Daniel Werner <daniel@tribily.com>
  *
  */
-class ZabbixAPI_Object_Template {
+abstract class ZabbixAPI_Object_Template {
 	/**
 	 * @var ZabbixAPI reference to our ZabbixAPI Object
 	 */
@@ -17,11 +17,12 @@ class ZabbixAPI_Object_Template {
 	 */
 	private $objName;
 	
+	
 	/**
 	 * @param string $objName
 	 * @param ZabbixAPI $api
 	 */
-	private function __construct(string $objName, ZabbixAPI $api) {
+	protected function __construct($objName, $api) {
 		$this->objName = $objName;
 		$this->api = $api;
 	}
@@ -30,7 +31,8 @@ class ZabbixAPI_Object_Template {
 	 * @param string $method The Method, that should be called
 	 * @param array $params The Parameters, we want to call
 	 */
-	private function callAPI(string $method, array $params) {
-		$this->api->callAPI ( $this->objName, $method, $params );
+	 protected function callAPI($method, $params) {
+		return $this->api->callAPI ( $this->objName, $method, $params );
 	}
+
 }
